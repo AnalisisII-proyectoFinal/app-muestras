@@ -7,9 +7,10 @@
  * @copyright - ksksue
  * @version 1.0
  */
+//http://10.0.2.2:4000/api/v1/appmovil
 class ApiServices {
     constructor(){
-        this.url ='http://10.0.2.2:4000/api/v1/app';
+        this.url ='http://localhost:4000/api/v1/appmovil';
     }
     obtnerEncabezado(){
         return{

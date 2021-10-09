@@ -1,12 +1,13 @@
 import React from "react";
 import { Text, View, StyleSheet } from 'react-native';
 
-const Sample = ({muestras})=>{
+const SampleItem = ({sample})=>{
     return(
         <View style={styles.itemContainer}>
-            <Text style={styles.itemTitle}> {muestras.tanq}</Text>
-            <Text style={styles.itemTitle}> {muestras.ph}</Text>
-            <Text style={styles.itemTitle}> {muestras.cl}</Text>
+            <Text style={styles.itemTitle}> Nombre del tanque: {sample.tanq}</Text>
+            <Text style={styles.itemTitle}> Ph de muestra: {sample.ph}</Text>
+            <Text style={styles.itemTitle}> Cloro Residual: {sample.cl}</Text>
+            <Text style={styles.itemTitle}> Tipo Muestra: {sample.tm}</Text>
         </View>
     )
 
@@ -24,4 +25,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Sample;
+export default SampleItem;

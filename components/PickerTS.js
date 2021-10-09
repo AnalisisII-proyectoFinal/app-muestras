@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {
     StyleSheet,
     Text,
@@ -8,26 +8,35 @@ import {
     ScrollView
 }from 'react-native';
 
-const OPTIONS =['tanque','casa1','casa2']
+//const OPTIONS =['tanque','casa1','casa2']
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 const PickerTS = (props)=>{
+
+
+    const [typeSample,setTypeSample]=useState(null);
+
     const onPressItem=(optionts)=>{
         props.changeModalVisibilityTS(false);
         props.setTypeData(optionts);
+        console.log(optionts)
     }
 
-    const optionts = OPTIONS.map((item,index)=>{
+    
+
+
+    const optionts = props.inSamples.map((item)=>{
+        console.log(item.id)
+       
         return(
             <TouchableOpacity
             style={styles.option}
-            key={index}
+            key={item.id}
             onPress={()=>onPressItem(item)}
             >
                 <Text style={styles.text}>
-                    {item}
+                    {item.idm}
                 </Text>
-
             </TouchableOpacity>
         )
     })

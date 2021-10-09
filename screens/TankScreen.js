@@ -1,12 +1,15 @@
 import React from "react";
-import {Text} from 'react-native';
+import {Text,StyleSheet} from 'react-native';
 import Layout from '../components/Layout';
+import TanksList from "../components/TanksList";
 const TankScreen = ()=>{
     return(
         <Layout>
-           <Text>screen tank</Text>
+           <TanksList />
         </Layout>
     )
 }
+
+
 
 export default TankScreen;

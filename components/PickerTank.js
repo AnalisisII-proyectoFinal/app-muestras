@@ -16,15 +16,19 @@ const PickerTank = (props)=>{
         props.changeModalVisibilityT(false);
         props.setTankData(optiont);
     }
-    const optiont = OPTIONS.map((item,index)=>{
+
+
+
+
+    const optiont = props.tanks.map((item)=>{
         return(
             <TouchableOpacity
             style={styles.option}
-            key={index}
+            key={item.id}
             onPress={()=>onPressItem(item)}
             >
                 <Text style={styles.text}>
-                    {item}
+                    {item.nombre}
                 </Text>
 
             </TouchableOpacity>
