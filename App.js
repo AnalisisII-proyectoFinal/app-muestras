@@ -8,8 +8,7 @@ import MenuScreen from './screens/MenuScreen.js';
 import NewSampleScreen from './screens/NewSampleScreen.js';
 import SampleScreen from './screens/SampleScreen.js';
 import TankScreen from './screens/TankScreen.js';
-import ThreadScreen from './screens/ThreadScreen.js';
-import TypeSampleScreen from './screens/TypeSampleScreen.js';
+
 
 const Stack = createNativeStackNavigator()
 
@@ -59,22 +58,6 @@ const App =()=>{
           name="TankScreen" component={TankScreen}
           options={{
             title:'Tanques',
-            headerStyle:{backgroundColor:"#18284A"},
-            headerTitleStyle:{color:"#ffffff"},
-            headerTintColor:"#ffffff", 
-          }}/>
-          <Stack.Screen 
-          name="TypeSampleScreen" component={TypeSampleScreen}
-          options={{
-            title:'Tipos de muestras',
-            headerStyle:{backgroundColor:"#18284A"},
-            headerTitleStyle:{color:"#ffffff"},
-            headerTintColor:"#ffffff", 
-          }}/>
-          <Stack.Screen 
-          name="ThreadScreen" component={ThreadScreen}
-          options={{
-            title:'Hilos de muestras',
             headerStyle:{backgroundColor:"#18284A"},
             headerTitleStyle:{color:"#ffffff"},
             headerTintColor:"#ffffff", 

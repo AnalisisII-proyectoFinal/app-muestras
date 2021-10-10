@@ -3,21 +3,28 @@ import { Text, TouchableOpacity, StyleSheet,Modal,TextInput, Alert } from "react
 import Layout from '../components/Layout';
 import PickerTank from "../components/PickerTank";
 import PickerTS from "../components/PickerTS";
-import {getIncompleteSamples,getTanks,NewSampleIncomplete} from "../ApiService.js"
+import {getIncompleteSamples,getTanks,NewSampleIncomplete,threadActive}from "../ApiService.js"
 
 const NewSampleScreen = ()=>{
-    const [tank, settank] = useState({
-        id:0,
-        nom:'',
-    });
-    const [sample, setsample]=useState({
-        id:0,
-        sam:'',
-    });
     const [isModalVisibleT, setisModalVisibleT] = useState(false);
     const [isModalVisibleTS, setisModalVisibleTS] = useState(false);
     const [inSamples,setInSamples]= useState([]);
     const [tanks,setTanks]=useState([]);
+    const [tank, settank] = useState({
+        id:0,
+        nom:'tanque...',
+    });
+    const [sample, setsample]=useState({
+        id:0,
+        sam:'muestra...',
+    });
+    const [thread,setThread]=useState({
+        id:0,
+        fi:'',
+        ff:'',
+        pr:0,
+    })
+    
 
     const [newSample,setNewSample]=useState({
         idm:0,
@@ -67,22 +74,34 @@ const NewSampleScreen = ()=>{
             console.log(error)
         } 
     }
-   
+    const requestThread= async ()=>{
+        try {
+            const t= await threadActive();
+            console.log(t);
+            setThread({id:t.body[0].id,fi:t.body[0].fecha1,ff:t.body[0].fecha2,pr:t.body[0].porcentaje})
+        } catch (error) {
+            console.log(error)
+        }
+    }
     useEffect(()=>{
+        requestThread();
         requestTanks();
     },[])
     
-
     const handleSubmit=async ()=>{
-        const res = await NewSampleIncomplete(newSample)
-        Alert.alert('Resultado',res.body.msg)
-        console.log(res.body);
+        try {
+            const res = await NewSampleIncomplete(newSample)
+            Alert.alert('Exito !',res.body.msg)
+            console.log(res.body);
+        } catch (error) {
+            Alert.alert('Error !','Muestra no enviada')
+        } 
     }
 
    
-
     return(
         <Layout>
+            <Text style={styles.textTank}>{`Hilo: De:${thread.fi} Al: ${thread.ff}`}</Text>
            <TouchableOpacity
                 onPress={()=>changeModalVisibilityT(true)}
                 style={styles.optionTank}
@@ -119,18 +138,21 @@ const NewSampleScreen = ()=>{
                 inSamples={inSamples}
                 />
             </Modal>
+            <Text style={styles.textTank}>{`Punto de Muestra`}</Text>
             <TextInput
                 style={styles.input} 
                 placeholder="punto muestra"
                 placeholderTextColor="#808080"
                 onChangeText={(text)=> handleChange("punto",text)}
             />
+            <Text style={styles.textTank}>{`PH`}</Text>
             <TextInput
                 style={styles.input} 
                 placeholder="ph"
                 placeholderTextColor="#808080"
                 onChangeText={(text)=> handleChange("ph",text)}
             />
+            <Text style={styles.textTank}>{`Cloro residual`}</Text>
             <TextInput
                 style={styles.input} 
                 placeholder="cloro residual"

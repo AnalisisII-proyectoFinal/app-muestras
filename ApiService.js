@@ -1,12 +1,6 @@
 //http://10.0.2.2:4000/api/v1/appmovil
-const API="http://10.0.2.2:4000/api/v1/appmovil";
+const API="http://localhost:4000/api/v1/appmovil";
 
-export const getTypeSamples = async ()=>{
-    const res = await fetch(`${API}/tipomuestra`,{
-        method:"GET",
-    });
-    return await res.json();
-}
 
 export const getTanks = async ()=>{
     const res = await fetch(`${API}/tanques`,{
@@ -16,7 +10,7 @@ export const getTanks = async ()=>{
 }
 
 export const getSamples = async ()=>{
-    const res = await fetch(`${API}/muestrasactivas/2`,{
+    const res = await fetch(`${API}/muestrascompletadas`,{
         method:'GET',
     });
     return await res.json();
@@ -40,6 +34,15 @@ export const NewSampleIncomplete = async(sample)=>{
     });
     return await res.json();
 }
+
+export const threadActive = async()=>{
+    const res = await fetch(`${API}/hilo`,{
+        method:'GET',
+    });
+    return await res.json();    
+}
+
+
 /*
 export const updateTask = async (taskId, newTask) => {
     console.log(taskId, newTask)

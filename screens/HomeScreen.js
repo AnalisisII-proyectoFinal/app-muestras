@@ -6,15 +6,15 @@ import {openDatabase} from '../Database.js';
 
 const HomeScreen = ({navigation})=>{
     
-    const handleToJoin=()=>{
-        console.log('ingresando');
-        navigation.navigate('MenuScreen') 
-    }
     const handleToAuth=()=>{
         console.log('autenticacion');
         navigation.navigate('LoginScreen');
     }
-
+    const handleToJoin=()=>{
+        console.log('ingresando');
+        navigation.navigate('MenuScreen') 
+    }
+    
     return(
         <Layout>
            <Image

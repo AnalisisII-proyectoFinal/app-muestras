@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from "react";
 import {FlatList,SafeAreaView,Alert,RefreshControl} from 'react-native';
 
-import {getSamples} from '../ApiService.js';
+import{getSamples} from '../ApiService.js'
 import SampleItem from "./SampleItem.js";
 
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Text,StyleSheet,TouchableOpacity } from "react-native";
+import { Text,StyleSheet,TouchableOpacity, Image } from "react-native";
 import Layout from '../components/Layout';
 const MenuScreen = ({navigation})=>{
 
@@ -12,16 +12,15 @@ const MenuScreen = ({navigation})=>{
     const handlerToTankScreen=()=>{
         navigation.navigate('TankScreen');
     }
-    const handlerToThreadScreen=()=>{
-        navigation.navigate('ThreadScreen');
-    }
-    const handlerToTypeSamplescreen=()=>{
-        navigation.navigate('TypeSampleScreen');
-    }
+    
 
 
     return(
         <Layout>
+            <Image 
+                style={styles.logo}
+                source={require('../assets/logauth.png')}
+            />
            <TouchableOpacity style={styles.btnPrimary} onPress={handlerToNewSample}>
                 <Text style={styles.textSecondary}>Nueva Muestra</Text>
             </TouchableOpacity>
@@ -30,12 +29,6 @@ const MenuScreen = ({navigation})=>{
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnPrimary} onPress={handlerToTankScreen}>
                 <Text style={styles.textSecondary}>Tanques</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.btnSecondary} onPress={handlerToThreadScreen}>
-                <Text style={styles.textPrimary}>Hilos</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.btnPrimary} onPress={handlerToTypeSamplescreen}>
-                <Text style={styles.textSecondary}>Tipos de muestras</Text>
             </TouchableOpacity>
         </Layout>
     )
@@ -47,7 +40,7 @@ const styles = StyleSheet.create({
         paddingTop:20,
         paddingBottom:20,
         borderRadius:5,
-        marginBottom:50,
+        marginBottom:40,
         backgroundColor:'#0A8ECD',
         width:'90%'
     },
@@ -55,7 +48,7 @@ const styles = StyleSheet.create({
         paddingTop:20,
         paddingBottom:20,
         borderRadius:5,
-        marginBottom:50,
+        marginBottom:40,
         backgroundColor:'#C1DF8B',
         width:'90%'
     },
@@ -70,6 +63,12 @@ const styles = StyleSheet.create({
         textAlign:'center',
         fontSize:18,
     },
+    logo:{
+        width:80,
+        height:80,
+        marginBottom:50
+
+    }
 })
 
 export default MenuScreen;
