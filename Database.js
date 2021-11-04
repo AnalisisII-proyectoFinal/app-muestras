@@ -11,7 +11,7 @@ export function openDatabase() {
         },
       };
     }
-    const db = SQLite.openDatabase("Datos.db");
-    console.log('create database succes!')
+    const db = SQLite.openDatabase("appMuestras.db");
+    console.log('create database succes!');
     return db;
 }

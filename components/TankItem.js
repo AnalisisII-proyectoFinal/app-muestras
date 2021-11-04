@@ -6,7 +6,7 @@ const TankItem = ({tank})=>{
         <View style={styles.itemContainer}>
                 <Image
                 style={styles.logo}
-                source={require('../assets/logo.png')} 
+                source={require('../assets/tanque.png')} 
                 />
                 <View>
                     <Text style={styles.itemTitle}>Nombre: {tank.nombre}</Text>

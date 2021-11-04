@@ -65,7 +65,7 @@ const App =()=>{
           <Stack.Screen 
           name="LoginScreen" component={LoginScreen}
           options={{
-            title:'Login',
+            title:'Autenticacion',
             headerStyle:{backgroundColor:"#18284A"},
             headerTitleStyle:{color:"#ffffff"},
             headerTintColor:"#ffffff",  

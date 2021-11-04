@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import { Text, TouchableOpacity, StyleSheet,Modal,TextInput, Alert } from "react-native";
+import { Text, Keyboard,TouchableOpacity, StyleSheet,Modal,TextInput, Alert,KeyboardAvoidingView,TouchableWithoutFeedback,Platform,View } from "react-native";
 import Layout from '../components/Layout';
 import PickerTank from "../components/PickerTank";
 import PickerTS from "../components/PickerTS";
@@ -100,12 +100,14 @@ const NewSampleScreen = ()=>{
 
    
     return(
-        <Layout>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={styles.container}>
             <Text style={styles.textTank}>{`Hilo: De:${thread.fi} Al: ${thread.ff}`}</Text>
-           <TouchableOpacity
-                onPress={()=>changeModalVisibilityT(true)}
-                style={styles.optionTank}
-            >
+                <TouchableOpacity
+                    onPress={()=>changeModalVisibilityT(true)}
+                    style={styles.optionTank}
+                >
                 <Text style={styles.textTank}>{tank.nom}</Text>
             </TouchableOpacity>
             <Modal
@@ -120,7 +122,7 @@ const NewSampleScreen = ()=>{
                 tanks={tanks}
                 />
             </Modal>
-            <TouchableOpacity
+             <TouchableOpacity
                 onPress={()=>changeModalVisibilityTS(true)}
                 style={styles.optionType}
             >
@@ -138,35 +140,41 @@ const NewSampleScreen = ()=>{
                 inSamples={inSamples}
                 />
             </Modal>
-            <Text style={styles.textTank}>{`Punto de Muestra`}</Text>
-            <TextInput
-                style={styles.input} 
-                placeholder="punto muestra"
-                placeholderTextColor="#808080"
-                onChangeText={(text)=> handleChange("punto",text)}
-            />
-            <Text style={styles.textTank}>{`PH`}</Text>
-            <TextInput
-                style={styles.input} 
-                placeholder="ph"
-                placeholderTextColor="#808080"
-                onChangeText={(text)=> handleChange("ph",text)}
-            />
-            <Text style={styles.textTank}>{`Cloro residual`}</Text>
-            <TextInput
-                style={styles.input} 
-                placeholder="cloro residual"
-                placeholderTextColor="#808080"
-                onChangeText={(text)=> handleChange("cl",text)}
-            />
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style={styles.inner}>
+                {/* <Text style={styles.textTank}>{`Punto de Muestra`}</Text> */}
+                <TextInput
+                    style={styles.input} 
+                    placeholder="punto muestra"
+                    placeholderTextColor="#808080"
+                    onChangeText={(text)=> handleChange("punto",text)}
+                />
+               {/*  <Text style={styles.textTank}>{`PH`}</Text> */}
+                <TextInput
+                    style={styles.input} 
+                    placeholder="ph"
+                    placeholderTextColor="#808080"
+                    keyboardType="decimal-pad"
+                    onChangeText={(text)=> handleChange("ph",text.toString() +' ml')}
+                />
+                {/* <Text style={styles.textTank}>{`Cloro residual`}</Text> */}
+                <TextInput
+                    style={styles.input} 
+                    placeholder="cloro residual"
+                    placeholderTextColor="#808080"
+                    keyboardType="decimal-pad"
+                    onChangeText={(text)=> handleChange("cl",text.toString() +' ml')}
+                />
             
-            <TouchableOpacity 
-                style={styles.buttonSigin}
-                onPress={()=>handleSubmit()}
-            >
-                <Text style={styles.buttonText}>Guardar</Text>
-            </TouchableOpacity>
-        </Layout>
+                <TouchableOpacity 
+                    style={styles.buttonSigin}
+                    onPress={()=>handleSubmit()}
+                >
+                    <Text style={styles.buttonText}>Guardar</Text>
+                </TouchableOpacity>   
+                </View>
+            </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
     )
 }
 
@@ -177,6 +185,11 @@ const styles = StyleSheet.create({
         marginVertical:10,
         fontSize:16,
         color:"#ffffff",
+    },
+    inner: {
+        padding: 24,
+        flex: 1,
+        justifyContent: "space-around"
     },
     textType:{
         textAlign:'center',
@@ -224,7 +237,12 @@ const styles = StyleSheet.create({
     buttonText:{
         color:"#ffffff",
         textAlign:'center'
-    }
+    },
+    container: {
+        backgroundColor: "#18284A",
+        padding:20,
+        flex:1,
+      }
 })
 
 export default NewSampleScreen;

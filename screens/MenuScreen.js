@@ -19,7 +19,7 @@ const MenuScreen = ({navigation})=>{
         <Layout>
             <Image 
                 style={styles.logo}
-                source={require('../assets/logauth.png')}
+                source={require('../assets/favicon.png')}
             />
            <TouchableOpacity style={styles.btnPrimary} onPress={handlerToNewSample}>
                 <Text style={styles.textSecondary}>Nueva Muestra</Text>
