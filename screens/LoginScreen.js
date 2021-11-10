@@ -76,14 +76,6 @@ const LoginScreen = ()=>{
             }
         
     }
-    const getDns=()=>{
-
-            db.transaction((tx)=>{
-                tx.executeSql("select * from server",[],(_,{rows})=>{
-                    console.log(JSON.stringify(rows))
-                })
-            })
-    }
     
 
 

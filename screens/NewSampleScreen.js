@@ -1,11 +1,12 @@
 import React,{useState,useEffect} from "react";
 import { Text, Keyboard,TouchableOpacity, StyleSheet,Modal,TextInput, Alert,KeyboardAvoidingView,TouchableWithoutFeedback,Platform,View } from "react-native";
-import Layout from '../components/Layout';
 import PickerTank from "../components/PickerTank";
 import PickerTS from "../components/PickerTS";
-import {getIncompleteSamples,getTanks,NewSampleIncomplete,threadActive}from "../ApiService.js"
+import {getIncompleteSamples,getTanks,NewSampleIncomplete,threadActive}from "../ApiService.js";
+import {openDatabase}from '../Database.js';
 
 const NewSampleScreen = ()=>{
+    const db = openDatabase();
     const [isModalVisibleT, setisModalVisibleT] = useState(false);
     const [isModalVisibleTS, setisModalVisibleTS] = useState(false);
     const [inSamples,setInSamples]= useState([]);
@@ -31,12 +32,21 @@ const NewSampleScreen = ()=>{
 	    punto:'', 
 	    ph:'',
 	    cl:'',
-        idu: 2,
+        idu:0,
     })
 
     const handleChange=(name,value)=>setNewSample({...newSample,[name]:value})
 
-    
+    const getIdUser= ()=>{
+        db.transaction((tx) => {
+            tx.executeSql("select iduser from user", [], (_, { rows }) =>{
+                console.log(rows._array[0].iduser)
+                let id = rows._array[0].iduser;
+                handleChange("idu",id)
+                }
+              );
+          });
+    }
     const changeModalVisibilityT=(boolt)=>{
         setisModalVisibleT(boolt);
     }
@@ -53,7 +63,6 @@ const NewSampleScreen = ()=>{
     const setTypeData = (optionts)=>{
         setsample({id:optionts.id,sam:optionts.idm})
         handleChange("idm",optionts.id)
-        //console.log(optionts);
        console.log(sample)
     }
 
@@ -86,13 +95,19 @@ const NewSampleScreen = ()=>{
     useEffect(()=>{
         requestThread();
         requestTanks();
+        getIdUser();
     },[])
     
     const handleSubmit=async ()=>{
         try {
-            const res = await NewSampleIncomplete(newSample)
-            Alert.alert('Exito !',"Muestra Ingresada")
-            console.log(res.body);
+            console.log(newSample)
+            if (newSample.idu !== 0) {
+                const res = await NewSampleIncomplete(newSample)
+                Alert.alert('Exito !',res.body.msg)
+            }else{
+                Alert.alert("Error !","Verifique autenticación")
+
+            }
         } catch (error) {
             Alert.alert('Error !','Muestra no enviada')
         } 

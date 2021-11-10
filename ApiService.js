@@ -59,7 +59,6 @@ export const threadActive = async()=>{
 }
 
 export const updateSample = async (sample) => {
-// console.log(taskId, newTask)
     const res = await fetch(`${API}/muestra`, {
       method: "PUT",
       headers: {
@@ -68,6 +67,5 @@ export const updateSample = async (sample) => {
       },
       body: JSON.stringify(sample),
     });
-    //console.log(res.json())
     return await res.json();
   };
