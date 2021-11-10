@@ -91,7 +91,7 @@ const NewSampleScreen = ()=>{
     const handleSubmit=async ()=>{
         try {
             const res = await NewSampleIncomplete(newSample)
-            Alert.alert('Exito !',res.body.msg)
+            Alert.alert('Exito !',"Muestra Ingresada")
             console.log(res.body);
         } catch (error) {
             Alert.alert('Error !','Muestra no enviada')
