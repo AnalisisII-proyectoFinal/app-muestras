@@ -1,7 +1,8 @@
 //http://10.0.2.2:4000/api/v1/appmovil
 //const API="http://10.0.2.2:4000/api/v1/appmovil";
-//const API="http://192.175.10.112:4000/api/v1/appmovil";
-const API="https://vigilanciacalidadagua-test.azurewebsites.net/api/v1/appmovil";
+const API="http://192.175.10.112:4000/api/v1/appmovil";
+//const API="https://vigilanciacalidadagua-test.azurewebsites.net/api/v1/appmovil";
+
 export const authUser = async(us,pas)=>{
     const res = await fetch(`${API}/autenticacion/${us}/${pas}`,{
         method:'GET',
@@ -48,6 +49,7 @@ export const threadActive = async()=>{
     });
     return await res.json();    
 }
+
 
 
 /*

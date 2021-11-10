@@ -18,7 +18,7 @@ const App =()=>{
       <Stack.Navigator>
       <Stack.Screen name="HomeScreen" component={HomeScreen}
           options={{
-            title:'',
+            title:'AGUA Y SANEAMIENTO',
             headerStyle:{backgroundColor:"#18284A"},
             headerTitleStyle:{color:"#ffffff"}, 
           }}

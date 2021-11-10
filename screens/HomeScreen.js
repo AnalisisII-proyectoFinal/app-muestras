@@ -1,23 +1,22 @@
 import React,{useEffect,useState} from "react";
 import { Image, Text, StyleSheet, View, TextInput,TouchableOpacity, Alert,KeyboardAvoidingView,TouchableWithoutFeedback,Keyboard } from "react-native";
-import {openDatabase} from '../Database.js';
-const db = openDatabase();
+ import {openDatabase} from '../Database.js';
+const db = openDatabase(); 
 const HomeScreen = ({navigation})=>{
-    const [pin,setPin]=useState();
-
+     const [pin,setPin]=useState();
     const handleToAuth=()=>{
        navigation.navigate('LoginScreen');
     }
     const handleToJoin=()=>{
-        if (pin==='') {
+       /* if (pin==='') {
             Alert.alert('Campo Vacio','Ingrese Pin')
         }else if (pin==='1234') {
             navigation.navigate('MenuScreen') 
         }else{
             Alert.alert('Pin incorrecto')
-        }
-        /* navigation.navigate('MenuScreen')  */
-        /* if (pin==='') {
+        } 
+        navigation.navigate('MenuScreen') */
+        if (pin==='') {
             Alert.alert('Campo Vacio','Ingrese Pin')
             
         }else{
@@ -31,7 +30,7 @@ const HomeScreen = ({navigation})=>{
                 }
               );
           });
-        } */
+        } 
     }
     
     const createTableUser=()=>{
@@ -41,23 +40,16 @@ const HomeScreen = ({navigation})=>{
             );
           });
     }
-    const createTableServer=()=>{
-        db.transaction((tx) => {
-            tx.executeSql(
-              "create table if not exists server (id integer primary key not null,  dns text);"
-            );
-            tx.executeSql("insert into server (dns) values (?)", ["http://ejemplo"]);
-          });
-    }
+    
 
-    const handlePin=(pin)=>{
+     const handlePin=(pin)=>{
         setPin(pin)
     }
 
     useEffect(() => {
         createTableUser();
-        createTableServer();
-    },[])
+    },[]) 
+    
 
     return(
         <KeyboardAvoidingView
@@ -147,5 +139,26 @@ const styles = StyleSheet.create({
     }
 })
 
-
 export default HomeScreen;
+
+/**
+ <View>
+                <Image
+                style={styles.logo}
+                source={require('../assets/foco.png')} 
+                    />
+                    <TextInput placeholder="PIN" 
+                        style={styles.textInput}
+                        placeholderTextColor="#808080"
+                        keyboardType="numeric"
+                        onChangeText={(text)=>handlePin(text)}  />
+                    <View>
+                        <TouchableOpacity style={styles.btnPrimary} onPress={handleToJoin}>
+                            <Text style={styles.textSecondary}>Ingresar</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.btnSecondary} onPress={handleToAuth}>
+                            <Text style={styles.textSecondary}>Autenticar</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+ */

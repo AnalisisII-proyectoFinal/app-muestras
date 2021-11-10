@@ -34,7 +34,7 @@ const LoginScreen = ()=>{
         
     }
 
-    
+    /*
     const requestApi= async (us,pas)=>{
         console.log(us,pas)
         
@@ -49,10 +49,10 @@ const LoginScreen = ()=>{
             const use=d[0].usuario;
             const idu=d[0].id;
             console.log(pin,use,idu)
-            insertUser(pin,use,idu) */
+            insertUser(pin,use,idu) 
             Alert.alert('Autenticación exitosa');           
         }
-    }
+    }*/
 
     const handleAuth= async ()=>{
         try {
@@ -63,13 +63,13 @@ const LoginScreen = ()=>{
             Alert.alert('usuario no esta habilitado')
             }else{
                 console.log('resultado',result.body);
-                /* const d=result.body;
+                const d=result.body;
                 const pin=d[0].pin;
                 const use=d[0].usuario;
                 const idu=d[0].id;
                 console.log(pin,use,idu)
-                insertUser(pin,use,idu) */
-            Alert.alert('Autenticación exitosa');           
+                insertUser(pin,use,idu) 
+                Alert.alert('Autenticación exitosa');           
             }
             } catch (error) {
                 console.log(error)
@@ -99,11 +99,12 @@ const LoginScreen = ()=>{
         >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.inner}>
-                    <Text style={styles.header}>Usuario y Contraseña</Text>
+                    <Text style={styles.header}>Usuario:</Text>
                     <TextInput placeholder="Usuario" 
                         style={styles.textInput}
                         placeholderTextColor="#808080"
                         onChangeText={(text)=>handleChange("user",text)} />
+                    <Text style={styles.header}>Contraseña:</Text>
                     <TextInput placeholder="Contraseña" 
                         style={styles.textInput}
                         placeholderTextColor="#808080"
@@ -111,20 +112,6 @@ const LoginScreen = ()=>{
                     <View style={styles.btnContainer}>
                         <TouchableOpacity style={styles.btnPrimary} onPress={handleAuth}>
                             <Text style={styles.textPrimary}>Autenticar</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </TouchableWithoutFeedback>
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={styles.inner}>
-                    <Text style={styles.header}>Direccion de Servidor</Text>
-                    <TextInput placeholder="https://server.com" 
-                        style={styles.textInput}
-                        placeholderTextColor="#808080"
-                        onChangeText={(text)=>handleChange("user",text)} />
-                    <View style={styles.btnContainer}>
-                        <TouchableOpacity style={styles.btnSecondary} onPress={handleAuth}>
-                            <Text style={styles.textPrimary}>Cambiar</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -140,20 +127,19 @@ const styles= StyleSheet.create({
         flex:1,
       },
       inner: {
-        padding: 24,
+        padding: 20,
         flex: 1,
         justifyContent: "space-around"
       },
       header: {
         fontSize: 20,
-        marginBottom: 5,
+        marginBottom: 1,
         color:"white",
         textAlign:'center'
       },
       textInput: {
         width:'90%',
         backgroundColor:'#121F3D',
-        marginBottom:5,
         fontSize: 25,
         borderWidth: 1,
         borderColor: "#094C9B",
@@ -164,25 +150,17 @@ const styles= StyleSheet.create({
         padding:4,
       },
       btnContainer: {
-        marginTop: 3
+        marginTop: 1
       },
-    btnSecondary:{
-        paddingTop:20,
-        paddingBottom:10,
-        borderRadius:5,
-        marginBottom:5,
-        backgroundColor:'#0A8ECD',
-        width:'90%'
-    },
+    
     textPrimary:{
         color:"#03091E",
         textAlign:'center'
     },
     btnPrimary:{
         paddingTop:20,
-        paddingBottom:10,
+        paddingBottom:20,
         borderRadius:5,
-        marginBottom:5,
         backgroundColor:'#C1DF8B',
         width:'90%'
     }
