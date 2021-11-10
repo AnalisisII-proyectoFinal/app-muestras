@@ -141,24 +141,3 @@ const styles = StyleSheet.create({
 
 export default HomeScreen;
 
-/**
- <View>
-                <Image
-                style={styles.logo}
-                source={require('../assets/foco.png')} 
-                    />
-                    <TextInput placeholder="PIN" 
-                        style={styles.textInput}
-                        placeholderTextColor="#808080"
-                        keyboardType="numeric"
-                        onChangeText={(text)=>handlePin(text)}  />
-                    <View>
-                        <TouchableOpacity style={styles.btnPrimary} onPress={handleToJoin}>
-                            <Text style={styles.textSecondary}>Ingresar</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.btnSecondary} onPress={handleToAuth}>
-                            <Text style={styles.textSecondary}>Autenticar</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
- */

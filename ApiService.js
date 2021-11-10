@@ -24,6 +24,14 @@ export const getSamples = async ()=>{
     return await res.json();
 }
 
+export const getSample = async(ids)=>{
+    const res = await fetch(`${API}/muestra/${ids}`,{
+        method:'GET',
+    });
+    return await res.json();
+}
+
+
 export const getIncompleteSamples= async(id)=>{
     const res = await fetch(`${API}/muestrasincompletas/${id}`,{
         method:'GET',
@@ -50,19 +58,16 @@ export const threadActive = async()=>{
     return await res.json();    
 }
 
-
-
-/*
-export const updateTask = async (taskId, newTask) => {
-    console.log(taskId, newTask)
-    const res = await fetch(`${API}/${taskId}`, {
+export const updateSample = async (sample) => {
+// console.log(taskId, newTask)
+    const res = await fetch(`${API}/muestra`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newTask),
+      body: JSON.stringify(sample),
     });
-    return res;
+    //console.log(res.json())
+    return await res.json();
   };
-  */
