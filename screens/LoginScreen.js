@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React,{useState} from "react";
 import { Text,TouchableOpacity,TextInput,Platform, StyleSheet, Alert, KeyboardAvoidingView,TouchableWithoutFeedback,View,Keyboard } from "react-native";
 import {authUser}from '../ApiService.js';
 import {openDatabase}from '../Database.js';
@@ -33,36 +33,12 @@ const LoginScreen = ()=>{
         })
         
     }
-
-    /*
-    const requestApi= async (us,pas)=>{
-        console.log(us,pas)
-        
-        const result = await authUser(us,pas);
-        if (result.body.length===0) {
-            console.log('usuario no habilitado')
-            Alert.alert('usuario no esta habilitado')
-        }else{
-            console.log('resultado',result.body[0].usuario);
-            /* const d=result.body;
-            const pin=d[0].pin;
-            const use=d[0].usuario;
-            const idu=d[0].id;
-            console.log(pin,use,idu)
-            insertUser(pin,use,idu) 
-            Alert.alert('Autenticación exitosa');           
-        }
-    }*/
-
     const handleAuth= async ()=>{
-        try {
+       try {
            const result= await authUser(credential.user,credential.pass)
            if (result.body.length===0) {
-               console.log(result.body)
-            console.log('usuario no habilitado')
-            Alert.alert('usuario no esta habilitado')
-            }else{
-                console.log('resultado',result.body);
+                Alert.alert('usuario no esta habilitado')
+           }else{
                 const d=result.body;
                 const pin=d[0].pin;
                 const use=d[0].usuario;
@@ -72,7 +48,8 @@ const LoginScreen = ()=>{
                 Alert.alert('Autenticación exitosa');           
             }
             } catch (error) {
-                console.log(error)
+               console.log(error)
+               Alert.alert("error","Al atenticarse");
             }
         
     }
@@ -80,10 +57,6 @@ const LoginScreen = ()=>{
 
 
     const handleChange= (name,value)=> setCredential({...credential,[name]:value});
-
-    useEffect(()=>{
-       // getDns();
-    },[])
     return(
         <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -162,26 +135,3 @@ const styles= StyleSheet.create({
 
 
 export default LoginScreen;
-/**
- <Image
-            style={styles.logo}
-            source={require('../assets/logauth.png')}
-           />
-           <TextInput
-                style={styles.input} 
-                placeholder="usuario"
-                placeholderTextColor="#808080"
-                onChangeText={(text)=>handleChange("user",text)}
-           />
-           <TextInput
-                style={styles.input} 
-                placeholder="contraseña"
-                placeholderTextColor="#808080"
-                onChangeText={(text)=>handleChange("pass",text)}
-                textContentType="password"
-           />
-            <TouchableOpacity style={styles.btnSecondary} onPress={handleAuth}>
-                <Text style={styles.textPrimary}>Autenticar</Text>
-            </TouchableOpacity>
- * 
- */

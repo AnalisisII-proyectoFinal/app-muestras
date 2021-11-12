@@ -1,13 +1,14 @@
 //http://10.0.2.2:4000/api/v1/appmovil
 //const API="http://10.0.2.2:4000/api/v1/appmovil";
-const API="http://192.175.10.112:4000/api/v1/appmovil";
-//const API="https://vigilanciacalidadagua-test.azurewebsites.net/api/v1/appmovil";
-
+//const API="http://192.175.10.112:4000/api/v1/appmovil";
+//const API="https://dirmunicipalaguasaneamiento.azurewebsites.net/api/v1/appmovil";
+const API="http://dirmunicipalaguasaneamiento-env.eba-prdpkysz.us-east-2.elasticbeanstalk.com/api/v1/appmovil"
 export const authUser = async(us,pas)=>{
+    console.log(us,pas)
     const res = await fetch(`${API}/autenticacion/${us}/${pas}`,{
         method:'GET',
     });
-    return await res.json();
+    return res.json();
 }
 
 export const getTanks = async ()=>{

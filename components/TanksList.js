@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from "react";
-import {FlatList,SafeAreaView,Alert,RefreshControl} from 'react-native';
+import {FlatList,SafeAreaView} from 'react-native';
 
 import {getTanks} from '../ApiService.js';
 import TankItem from "./TankItem.js";
